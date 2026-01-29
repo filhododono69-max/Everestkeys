@@ -1,21 +1,30 @@
-<!-- PARTE 1: ESTILO, CABEÇALHO, BARRA DE PESQUISA E PRIMEIROS 20 JOGOS -->
+<!-- PARTE 1: CABEÇALHO, BARRA DE PESQUISA E PRIMEIROS 15 JOGOS -->
 <style>
-body { background: #000; color: #fff; font-family: Arial, sans-serif; margin:0; padding:0; }
-header { text-align: center; padding: 20px; font-size: 3em; color: gold; text-shadow: 0 0 10px #FFD700; }
-#searchContainer { text-align: center; margin: 20px; }
-#searchInput { padding: 10px; width: 60%; max-width: 400px; border-radius: 5px; border:none; font-size:1em; }
+body { margin:0; padding:0; font-family: 'Arial', sans-serif; background:#121212; color:#fff; }
+header { 
+  text-align:center; 
+  padding:30px 0; 
+  font-size:3.5em; 
+  font-weight:900; 
+  color:#FFD700; 
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7); 
+  font-family: 'Arial Black', 'Arial', sans-serif;
+}
+#searchContainer { text-align:center; margin:20px; }
+#searchInput { width:60%; max-width:400px; padding:10px; border-radius:5px; border:none; font-size:1em; }
 #allGames { display:flex; flex-wrap: wrap; justify-content:center; gap:20px; padding:20px; }
-.game-card { background:#111; border-radius:10px; width:200px; text-align:center; transition: transform 0.3s, box-shadow 0.3s; }
-.game-card:hover { transform: translateY(-10px); box-shadow: 0 0 20px gold; }
+.game-card { background:#1e1e1e; border-radius:10px; width:220px; text-align:center; overflow:hidden; transition: transform 0.3s, box-shadow 0.3s; }
+.game-card:hover { transform: translateY(-10px); box-shadow:0 0 20px #FFD700; }
 .game-card img { width:100%; display:block; }
-.game-card h3 { color: gold; margin:10px 0; font-size:1.1em; }
+.game-card h3 { color:#FFD700; margin:10px 0; font-size:1.2em; font-weight:bold; }
 .price { margin:5px 0; font-weight:bold; color:#fff; }
-.buy-btn { display:inline-block; margin:10px 0 20px; padding:10px 20px; background:gold; color:#000; text-decoration:none; border-radius:5px; font-weight:bold; transition:0.3s; }
+.buy-btn { display:inline-block; margin:10px 0 20px; padding:10px 20px; background:#FFD700; color:#000; text-decoration:none; border-radius:5px; font-weight:bold; transition:0.3s; }
 .buy-btn:hover { background:#e6c200; }
-footer { text-align:center; padding:20px; font-size:1.1em; color:#fff; background:#111; }
+footer { text-align:center; padding:30px; font-size:1.1em; color:#fff; background:#1e1e1e; }
+footer a { color:#FFD700; text-decoration:none; font-weight:bold; }
 </style>
 
-<header>Everest Games 🎮</header>
+<header>Everest Keys 🎮</header>
 
 <div id="searchContainer">
   <input type="text" id="searchInput" placeholder="Busque seu jogo...">
@@ -23,31 +32,26 @@ footer { text-align:center; padding:20px; font-size:1.1em; color:#fff; backgroun
 
 <div id="allGames"></div>
 
-<footer>Não achou o seu jogo? Nós chame e diga qual jogo você quer!</footer>
+<footer>Não achou o seu jogo? Nos chame e diga qual você quer! WhatsApp: <a href="https://wa.me/5562982553620" target="_blank">62982553620</a></footer>
 
 <script>
-// Array com os primeiros 20 jogos
+// PRIMEIROS 15 JOGOS COM IMAGENS OFICIAIS
 const games = [
-{name:"Age of Empires II: Definitive Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/813780/library_600x900.jpg"},
-{name:"ARK: Survival Ascended", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/346110/library_600x900.jpg"},
-{name:"Assetto Corsa", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/244210/library_600x900.jpg"},
-{name:"Balatro", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1819470/library_600x900.jpg"},
-{name:"Baldur's Gate 3", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg"},
-{name:"Baldur's Gate II: Enhanced Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/236150/library_600x900.jpg"},
-{name:"Baldur's Gate: Dark Alliance", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1343010/library_600x900.jpg"},
-{name:"Baldur's Gate: Enhanced Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/228280/library_600x900.jpg"},
-{name:"BeamNG.drive", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/284160/library_600x900.jpg"},
-{name:"Borderlands 3", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/397540/library_600x900.jpg"},
-{name:"Cities: Skylines", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/255710/library_600x900.jpg"},
-{name:"Cities: Skylines II", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1363850/library_600x900.jpg"},
-{name:"Clair Obscur: Expedition 33", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1845600/library_600x900.jpg"},
-{name:"Contraband Police", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1620420/library_600x900.jpg"},
-{name:"Crime Scene Cleaner", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1355120/library_600x900.jpg"},
-{name:"Crusader Kings III", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1158310/library_600x900.jpg"},
-{name:"Cyberpunk 2077", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/library_600x900.jpg"},
-{name:"DARK SOULS™️ II", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/335300/library_600x900.jpg"},
-{name:"DARK SOULS™️ III", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/374320/library_600x900.jpg"},
-{name:"DARK SOULS™️: REMASTERED", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/570940/library_600x900.jpg"}
+{name:"Age of Empires II: Definitive Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/813780/library_600x900.jpg", price:"R$ 19,90"},
+{name:"ARK: Survival Ascended", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/346110/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Assetto Corsa", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/244210/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Balatro", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1819470/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Baldur's Gate 3", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Baldur's Gate II: Enhanced Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/236150/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Baldur's Gate: Dark Alliance", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1343010/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Baldur's Gate: Enhanced Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/228280/library_600x900.jpg", price:"R$ 19,90"},
+{name:"BeamNG.drive", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/284160/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Borderlands 3", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/397540/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Cities: Skylines", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/255710/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Cities: Skylines II", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1363850/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Clair Obscur: Expedition 33", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1845600/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Contraband Police", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1620420/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Crime Scene Cleaner", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1355120/library_600x900.jpg", price:"R$ 19,90"}
 ];
 
 // Função para renderizar os jogos
@@ -60,7 +64,7 @@ function renderGames(filter=""){
     card.className="game-card";
     card.innerHTML=`<img src="${game.img}" alt="${game.name}">
                     <h3>${game.name}</h3>
-                    <div class="price">R$ 19,90</div>
+                    <div class="price">${game.price}</div>
                     <a class="buy-btn" href="https://wa.me/5562982553620?text=Quero%20comprar%20o%20jogo%20${encodeURIComponent(game.name)}" target="_blank">Comprar</a>`;
     container.appendChild(card);
   });
@@ -75,26 +79,26 @@ document.getElementById("searchInput").addEventListener("input", e=>renderGames(
 <script>
 // PARTE 2: próximos 20 jogos
 games.push(
-{name:"DAVE THE DIVER", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1748180/library_600x900.jpg"},
-{name:"Days Gone", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/library_600x900.jpg"},
-{name:"Dead Cells", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/588650/library_600x900.jpg"},
-{name:"Devil May Cry 5", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/601150/library_600x900.jpg"},
-{name:"Dragon Ball Sparking ZERO", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1234567/library_600x900.jpg"},
-{name:"DYNASTY WARRIORS 9 Empires", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1256640/library_600x900.jpg"},
-{name:"DYNASTY WARRIORS: ORIGINS", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1342320/library_600x900.jpg"},
-{name:"Dying Light", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/239140/library_600x900.jpg"},
-{name:"Dying Light 2 Stay Human: Reloaded Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/534380/library_600x900.jpg"},
-{name:"Elden Ring", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg"},
-{name:"Elden Ring Nightreign", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1345621/library_600x900.jpg"},
-{name:"Enshrouded", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1689000/library_600x900.jpg"},
-{name:"Euro Truck Simulator 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/227300/library_600x900.jpg"},
-{name:"Evil West", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1632670/library_600x900.jpg"},
-{name:"Factorio", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/427520/library_600x900.jpg"},
-{name:"Farming Simulator 22", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1240840/library_600x900.jpg"},
-{name:"Farming Simulator 25", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1637240/library_600x900.jpg"},
-{name:"Fallout 4", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/377160/library_600x900.jpg"},
-{name:"FINAL FANTASY VII REBIRTH", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/2345670/library_600x900.jpg"},
-{name:"FINAL FANTASY VII REMAKE INTERGRADE", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/391540/library_600x900.jpg"}
+{name:"DAVE THE DIVER", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1748180/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Days Gone", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Dead Cells", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/588650/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Devil May Cry 5", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/601150/library_600x900.jpg", price:"R$ 19,90"},
+{name:"DYNASTY WARRIORS 9 Empires", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1256640/library_600x900.jpg", price:"R$ 19,90"},
+{name:"DYNASTY WARRIORS: ORIGINS", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1342320/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Dying Light", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/239140/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Dying Light 2 Stay Human: Reloaded Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/534380/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Elden Ring", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Enshrouded", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1689000/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Euro Truck Simulator 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/227300/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Evil West", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1632670/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Factorio", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/427520/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Farming Simulator 22", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1240840/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Fallout 4", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/377160/library_600x900.jpg", price:"R$ 19,90"},
+{name:"FINAL FANTASY VII REBIRTH", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/2345670/library_600x900.jpg", price:"R$ 19,90"},
+{name:"FINAL FANTASY VII REMAKE INTERGRADE", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/391540/library_600x900.jpg", price:"R$ 19,90"},
+{name:"FINAL FANTASY XVI", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1593260/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Forza Horizon 4", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1293830/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Forza Horizon 5", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/library_600x900.jpg", price:"R$ 19,90"}
 );
 
 // Atualiza a exibição
@@ -103,26 +107,26 @@ renderGames();
 <script>
 // PARTE 3: próximos 20 jogos
 games.push(
-{name:"FINAL FANTASY XVI", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1593260/library_600x900.jpg"},
-{name:"Forza Horizon 4", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1293830/library_600x900.jpg"},
-{name:"Forza Horizon 5", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/library_600x900.jpg"},
-{name:"Ghost of Tsushima", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245621/library_600x900.jpg"},
-{name:"Ghostwire: Tokyo", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1904300/library_600x900.jpg"},
-{name:"God of War", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/library_600x900.jpg"},
-{name:"God of War Ragnarök", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1857090/library_600x900.jpg"},
-{name:"Hollow Knight", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/367520/library_600x900.jpg"},
-{name:"Inzoi", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1789050/library_600x900.jpg"},
-{name:"It Takes Two", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1426210/library_600x900.jpg"},
-{name:"Kingdom Come: Deliverance", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/379430/library_600x900.jpg"},
-{name:"Kingdom Come: Deliverance II", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1825650/library_600x900.jpg"},
-{name:"Lies of P", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/2051220/library_600x900.jpg"},
-{name:"Marvel's Spider-Man 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/2234560/library_600x900.jpg"},
-{name:"Marvel’s Spider-Man Remastered", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1823300/library_600x900.jpg"},
-{name:"Marvel’s Spider-Man: Miles Morales", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1688650/library_600x900.jpg"},
-{name:"Melvor Idle", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1044210/library_600x900.jpg"},
-{name:"Monster Hunter: World", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/582010/library_600x900.jpg"},
-{name:"Mortal Kombat 11", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/976310/library_600x900.jpg"},
-{name:"Mount & Blade II: Bannerlord", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/261550/library_600x900.jpg"}
+{name:"Ghost of Tsushima", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245621/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Ghostwire: Tokyo", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1904300/library_600x900.jpg", price:"R$ 19,90"},
+{name:"God of War", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/library_600x900.jpg", price:"R$ 19,90"},
+{name:"God of War Ragnarök", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1857090/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Hollow Knight", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/367520/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Inzoi", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1789050/library_600x900.jpg", price:"R$ 19,90"},
+{name:"It Takes Two", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1426210/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Kingdom Come: Deliverance", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/379430/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Lies of P", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/2051220/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Marvel's Spider-Man 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/2234560/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Marvel’s Spider-Man Remastered", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1823300/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Marvel’s Spider-Man: Miles Morales", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1688650/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Melvor Idle", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1044210/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Monster Hunter: World", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/582010/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Mortal Kombat 11", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/976310/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Mount & Blade II: Bannerlord", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/261550/library_600x900.jpg", price:"R$ 19,90"},
+{name:"No Man's Sky", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/275850/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Oxygen Not Included", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/457140/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Palworld", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1873300/library_600x900.jpg", price:"R$ 19,90"},
+{name:"PAYDAY 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/218620/library_600x900.jpg", price:"R$ 19,90"}
 );
 
 // Atualiza a exibição
@@ -131,67 +135,53 @@ renderGames();
 <script>
 // PARTE 4: próximos 20 jogos
 games.push(
-{name:"No Man's Sky", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/275850/library_600x900.jpg"},
-{name:"Oxygen Not Included", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/457140/library_600x900.jpg"},
-{name:"Palworld", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1873300/library_600x900.jpg"},
-{name:"PAYDAY 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/218620/library_600x900.jpg"},
-{name:"Plants vs. Zombies GOTY Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/3590/library_600x900.jpg"},
-{name:"Project Zomboid", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/108600/library_600x900.jpg"},
-{name:"Raft", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/648800/library_600x900.jpg"},
-{name:"Red Dead Redemption 1", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/12180/library_600x900.jpg"},
-{name:"Red Dead Redemption 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg"},
-{name:"Resident Evil 0", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/105800/library_600x900.jpg"},
-{name:"Resident Evil 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/883710/library_600x900.jpg"},
-{name:"Resident Evil 3", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/952060/library_600x900.jpg"},
-{name:"Resident Evil 5", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/21690/library_600x900.jpg"},
-{name:"Resident Evil 6", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/21690/library_600x900.jpg"},
-{name:"Resident Evil 7 Biohazard", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/418370/library_600x900.jpg"},
-{name:"Resident Evil Village", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/library_600x900.jpg"},
-{name:"Rise of the Tomb Raider™️", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/391220/library_600x900.jpg"},
-{name:"RimWorld", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/294100/library_600x900.jpg"},
-{name:"ROMANCE OF THE THREE KINGDOMS 8 REMAKE", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1958700/library_600x900.jpg"},
-{name:"Satisfactory", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/526870/library_600x900.jpg"}
+{name:"Plants vs. Zombies GOTY Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/3590/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Project Zomboid", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/108600/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Raft", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/648800/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Red Dead Redemption 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Resident Evil 0", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/105800/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Resident Evil 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/883710/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Resident Evil 3", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/952060/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Resident Evil 5", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/21690/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Resident Evil 6", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/21690/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Resident Evil 7 Biohazard", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/418370/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Resident Evil Village", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Rise of the Tomb Raider™️", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/391220/library_600x900.jpg", price:"R$ 19,90"},
+{name:"RimWorld", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/294100/library_600x900.jpg", price:"R$ 19,90"},
+{name:"ROMANCE OF THE THREE KINGDOMS 8 REMAKE", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1958700/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Satisfactory", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/526870/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Sekiro™️: Shadows Die Twice - GOTY Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Shadow of the Tomb Raider: Definitive Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/750920/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Sid Meier's Civilization®️ V", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/8930/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Slay the Spire", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/646570/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Sons of the Forest", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1368100/library_600x900.jpg", price:"R$ 19,90"}
 );
 
 // Atualiza a exibição
 renderGames();
 </script>
 <script>
-// PARTE 5: próximos 20 jogos
+// PARTE 5: últimos jogos
 games.push(
-{name:"Sekiro™️: Shadows Die Twice - GOTY Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/814380/library_600x900.jpg"},
-{name:"Shadow of the Tomb Raider: Definitive Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/750920/library_600x900.jpg"},
-{name:"Shin chan: Shiro and the Coal Town", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1456210/library_600x900.jpg"},
-{name:"Sid Meier's Civilization®️ V", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/8930/library_600x900.jpg"},
-{name:"Slay the Spire", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/646570/library_600x900.jpg"},
-{name:"Sons of the Forest", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1368100/library_600x900.jpg"},
-{name:"Soulmask", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1825600/library_600x900.jpg"},
-{name:"Split Fiction", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1592630/library_600x900.jpg"},
-{name:"Stardew Valley", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/413150/library_600x900.jpg"},
-{name:"Stellaris", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/281990/library_600x900.jpg"},
-{name:"Storage Hunter Simulator", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1160320/library_600x900.jpg"},
-{name:"Sultan's Game", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1790140/library_600x900.jpg"},
-{name:"Tainted Grail: The Fall of Avalon", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1296720/library_600x900.jpg"},
-{name:"Tekken 8", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1884160/library_600x900.jpg"},
-{name:"Terraria", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/105600/library_600x900.jpg"},
-{name:"The Binding of Isaac: Rebirth", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/113200/library_600x900.jpg"},
-{name:"The Elder Scrolls V: Skyrim Special Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/489830/library_600x900.jpg"},
-{name:"The Last of Us™️ Part I", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/library_600x900.jpg"},
-{name:"The Last of Us™️ Parte II Remastered", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1888940/library_600x900.jpg"},
-{name:"The Planet Crafter", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1752180/library_600x900.jpg"}
-);
-
-// Atualiza a exibição
-renderGames();
-</script>
-<script>
-// PARTE 6: últimos jogos
-games.push(
-{name:"The Witcher 3: Wild Hunt", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg"},
-{name:"Transport Fever 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1166000/library_600x900.jpg"},
-{name:"V Rising", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1604030/library_600x900.jpg"},
-{name:"Victoria 3", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/529340/library_600x900.jpg"},
-{name:"Wallpaper Engine", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/431960/library_600x900.jpg"}
+{name:"Soulmask", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1825600/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Split Fiction", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1592630/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Stardew Valley", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/413150/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Stellaris", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/281990/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Storage Hunter Simulator", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1160320/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Sultan's Game", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1790140/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Tainted Grail: The Fall of Avalon", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1296720/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Tekken 8", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1884160/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Terraria", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/105600/library_600x900.jpg", price:"R$ 19,90"},
+{name:"The Binding of Isaac: Rebirth", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/113200/library_600x900.jpg", price:"R$ 19,90"},
+{name:"The Elder Scrolls V: Skyrim Special Edition", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/489830/library_600x900.jpg", price:"R$ 19,90"},
+{name:"The Last of Us™️ Part I", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/library_600x900.jpg", price:"R$ 19,90"},
+{name:"The Last of Us™️ Part II Remastered", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1888940/library_600x900.jpg", price:"R$ 19,90"},
+{name:"The Planet Crafter", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1752180/library_600x900.jpg", price:"R$ 19,90"},
+{name:"The Witcher 3: Wild Hunt", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Transport Fever 2", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1166000/library_600x900.jpg", price:"R$ 19,90"},
+{name:"V Rising", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1604030/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Victoria 3", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/529340/library_600x900.jpg", price:"R$ 19,90"},
+{name:"Wallpaper Engine", img:"https://cdn.cloudflare.steamstatic.com/steam/apps/431960/library_600x900.jpg", price:"R$ 19,90"}
 );
 
 // Atualiza a exibição
